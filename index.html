@@ -9,6 +9,53 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    /* Hero section override to match the given image design */
+    .hero-section {
+      background-color: #f9f9f9;
+      padding: 5rem 1rem;
+      text-align: left;
+      max-width: 600px;
+      margin: 0 auto;
+      border-radius: 15px;
+    }
+    .hero-title {
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: #202124;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .hero-title .highlight {
+      color: #1a73e8;
+      text-shadow: 0 0 8px #7baaf7;
+    }
+    .hero-subtitle {
+      font-size: 1.125rem;
+      color: #5f6368;
+      margin-bottom: 2rem;
+      line-height: 1.4;
+    }
+    .hero-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #1a73e8, #3367d6);
+      color: white;
+      padding: 0.75rem 2.5rem;
+      font-size: 1.25rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 6px 12px rgb(49 99 230 / 0.5);
+      transition: background 0.3s ease;
+    }
+    .hero-btn i {
+      margin-left: 0.5rem;
+      font-weight: 700;
+    }
+    .hero-btn:hover {
+      background: linear-gradient(90deg, #3367d6, #1a73e8);
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
 
@@ -32,16 +79,16 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="hero-section" style="background-color:#f9f9f9;">
-  <div class="container text-center py-5">
-    <h1 class="hero-title" data-aos="fade-up" style="color:#007bff;">Master Your Game Skills</h1>
-    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
-      Get the best game sensitivity settings and antiban panels to dominate your gameplay and stay safe.
-    </p>
-    <a href="#packages" class="hero-btn" data-aos="fade-up" data-aos-delay="400">
-      Explore Packages &nbsp;<i class="fa fa-arrow-right"></i>
-    </a>
-  </div>
+<section class="hero-section" data-aos="fade-up">
+  <h1 class="hero-title">
+    Build Your Empire with our <span class="highlight">Digital Course</span>
+  </h1>
+  <p class="hero-subtitle">
+    Master stock marketing, dropshipping, and finance mastery — crafted for ambitious learners like you.
+  </p>
+  <a href="#packages" class="hero-btn">
+    Explore Courses <i class="fa fa-arrow-right"></i>
+  </a>
 </section>
 
 <!-- Packages Section -->
@@ -238,3 +285,4 @@
 </script>
 </body>
 </html>
+

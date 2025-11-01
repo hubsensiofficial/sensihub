@@ -4,85 +4,156 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout | SensiHub</title>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <style>
     body {
-      background: #f9f9f9;
+      background: #f8faff;
+      font-family: 'Poppins', sans-serif;
     }
+
     .checkout-container {
       max-width: 600px;
-      margin: 60px auto;
-      background: #fff;
+      margin: 70px auto;
+      background: #ffffff;
       padding: 2.5rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(26,115,232,0.1);
-      position: relative;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(26,115,232,0.1);
+      animation: zoomIn 0.8s ease forwards;
     }
+
+    @keyframes zoomIn {
+      from {transform: scale(0.9); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
+    }
+
     .checkout-title {
       text-align: center;
       font-weight: 700;
-      margin-bottom: 2rem;
       color: #1a73e8;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px rgba(26,115,232,0.2);
     }
+
     label {
       font-weight: 600;
       color: #333;
     }
-    .form-control {
-      border-radius: 10px;
+
+    .form-control, .form-select {
+      border-radius: 12px;
       padding: 0.75rem;
-      border: 1px solid #ccc;
+      border: 1px solid #d0d7ff;
+      transition: all 0.3s ease;
     }
+
+    .form-control:focus, .form-select:focus {
+      border-color: #1a73e8;
+      box-shadow: 0 0 10px rgba(26,115,232,0.2);
+    }
+
+    .phone-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .phone-group select {
+      flex: 0 0 100px;
+    }
+
     .payment-method {
       display: flex;
       align-items: center;
       gap: 10px;
       background: #f1f5ff;
       border: 1px solid rgba(26,115,232,0.3);
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 0.75rem 1rem;
-      margin-top: 1rem;
+      margin-top: 1.2rem;
+      transition: all 0.3s ease;
     }
+
+    .payment-method:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 10px rgba(26,115,232,0.2);
+    }
+
     .payment-method input {
       accent-color: #1a73e8;
     }
-    .proceed-btn {
-      display: block;
-      width: 100%;
-      background: linear-gradient(90deg, #1a73e8, #3367d6);
-      color: #fff;
-      font-size: 1.2rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 50px;
-      padding: 0.75rem;
-      margin-top: 1.5rem;
-      box-shadow: 0 6px 15px rgba(49,99,230,0.3);
-      transition: all 0.3s ease;
-    }
-    .proceed-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(26,115,232,0.4);
-    }
+
     .price-box {
       background: linear-gradient(90deg, #e8f0fe, #ffffff);
       border: 1px solid rgba(26,115,232,0.3);
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 1rem;
-      margin-top: 1.5rem;
       text-align: center;
       font-weight: 600;
       color: #1a73e8;
       font-size: 1.3rem;
+      margin-top: 1.5rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .proceed-btn {
+      display: block;
+      width: 100%;
+      background: linear-gradient(90deg, #1a73e8, #3367d6);
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      padding: 0.8rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 8px 18px rgba(49,99,230,0.3);
+      transition: all 0.4s ease;
+    }
+
+    .proceed-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(26,115,232,0.4);
+    }
+
+    .form-check-label a {
+      color: #1a73e8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .form-check-label a:hover {
+      text-decoration: underline;
+    }
+
+    .loader {
+      display: none;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .loader i {
+      font-size: 1.8rem;
+      color: #1a73e8;
+      animation: rotate 1s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
 
-  <!-- Checkout Form -->
-  <div class="checkout-container" data-aos="fade-up">
+  <div class="checkout-container" data-aos="zoom-in">
     <h2 class="checkout-title">Checkout</h2>
 
     <form id="checkoutForm">
@@ -90,13 +161,24 @@
         <label for="name">Full Name</label>
         <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
       </div>
+
       <div class="mb-3">
         <label for="email">Email Address</label>
         <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
       </div>
+
       <div class="mb-3">
         <label for="phone">Phone Number</label>
-        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+        <div class="phone-group">
+          <select class="form-select" id="countryCode">
+            <option value="+91" selected>🇮🇳 +91</option>
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+44">🇬🇧 +44</option>
+            <option value="+61">🇦🇺 +61</option>
+            <option value="+971">🇦🇪 +971</option>
+          </select>
+          <input type="tel" class="form-control" id="phone" placeholder="Enter your number" required>
+        </div>
       </div>
 
       <div class="price-box">
@@ -116,44 +198,50 @@
       </div>
 
       <button type="submit" class="proceed-btn">Proceed to Payment</button>
+      <div class="loader" id="loader">
+        <i class="fa-solid fa-spinner"></i>
+        <p class="mt-2">Redirecting to Payment...</p>
+      </div>
     </form>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
   <script>
-    // Simulate package price auto-fill from previous page
+    // Auto-fill price from URL parameter
     const params = new URLSearchParams(window.location.search);
-    const price = params.get("price") || 499; // default ₹499 if none passed
+    const price = params.get("price") || 499;
     document.getElementById("packagePrice").textContent = price;
 
-    // Form submission handler
     document.getElementById("checkoutForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
       const phone = document.getElementById("phone").value;
+      const countryCode = document.getElementById("countryCode").value;
 
-      // Simulated Webhook Payload (frontend-only)
+      const loader = document.getElementById("loader");
+      loader.style.display = "block";
+
+      // Simulate webhook payload
       const payload = {
         name: name,
         email: email,
-        phone: phone,
+        phone: countryCode + phone,
         amount: price,
         method: "GoCreator"
       };
+      console.log("Sending to webhook:", payload);
 
-      // Redirect to GoCreator payment gateway (frontend simulation)
-      const paymentURL = `https://www.gocreator.in/dp?product=ac7bf376-721e-4bdc-a67d-9df309b45954&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}&amount=${encodeURIComponent(price)}`;
-
-      // Optionally send webhook (simulated)
-      console.log("Sending data to webhook:", payload);
-
-      window.location.href = paymentURL;
+      // Redirect to GoCreator Payment Gateway
+      setTimeout(() => {
+        const paymentURL = `https://www.gocreator.in/dp?product=ac7bf376-721e-4bdc-a67d-9df309b45954&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(countryCode + phone)}&amount=${encodeURIComponent(price)}`;
+        window.location.href = paymentURL;
+      }, 2000);
     });
   </script>
-
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init();</script>
-
 </body>
 </html>

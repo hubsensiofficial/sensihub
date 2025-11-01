@@ -1,6 +1,6 @@
-/* ------------------------------
+/* --------------------------------
    Global Styles
------------------------------- */
+-------------------------------- */
 * {
   margin: 0;
   padding: 0;
@@ -12,15 +12,17 @@ body {
   background-color: #f9f9f9;
   color: #202124;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* ------------------------------
+/* --------------------------------
    Navbar
------------------------------- */
+-------------------------------- */
 .navbar {
   background: #ffffff !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
+  z-index: 1000;
 }
 
 .navbar-brand {
@@ -41,13 +43,13 @@ body {
   text-shadow: 0 0 8px rgba(26, 115, 232, 0.4);
 }
 
-/* ------------------------------
+/* --------------------------------
    Hero Section
------------------------------- */
+-------------------------------- */
 .hero-section {
-  background-color: #f9f9f9;
-  padding: 7rem 1rem;
+  background: #f9f9f9;
   text-align: center;
+  padding: 7rem 1rem 5rem;
   position: relative;
   overflow: hidden;
 }
@@ -106,7 +108,7 @@ body {
   z-index: 1;
 }
 
-/* Explore / Buy Buttons */
+/* Buttons (Hero / Packages) */
 .hero-btn {
   display: inline-block;
   background: linear-gradient(90deg, #1a73e8, #3367d6);
@@ -130,13 +132,14 @@ body {
   box-shadow: 0 10px 18px rgba(49, 99, 230, 0.5);
 }
 
-/* ------------------------------
+/* --------------------------------
    Packages Section
------------------------------- */
+-------------------------------- */
 .packages-section {
   background: #fff;
   position: relative;
   overflow: hidden;
+  padding-bottom: 4rem;
 }
 
 .packages-section .underline {
@@ -152,12 +155,18 @@ body {
   overflow: hidden;
   transition: all 0.4s ease;
   background: #ffffff;
+  border: none;
 }
 
 .card img {
   height: 220px;
   object-fit: cover;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.5s ease;
+}
+
+.card img:hover {
+  transform: scale(1.05);
 }
 
 .card-body {
@@ -190,9 +199,16 @@ body {
   box-shadow: 0 15px 25px rgba(26, 115, 232, 0.2);
 }
 
-/* ------------------------------
-   Footer
------------------------------- */
+/* Consistent Buy Buttons inside packages */
+.card .hero-btn {
+  margin-top: 10px;
+  font-size: 1rem;
+  padding: 0.6rem 2rem;
+}
+
+/* --------------------------------
+   Footer Section
+-------------------------------- */
 .footer-section {
   color: #e0e0e0;
 }
@@ -227,9 +243,9 @@ body {
   transform: scale(1.2);
 }
 
-/* ------------------------------
+/* --------------------------------
    About Page
------------------------------- */
+-------------------------------- */
 .about-section {
   padding: 6rem 1rem;
   background: #f9f9f9;
@@ -248,9 +264,9 @@ body {
   line-height: 1.7;
 }
 
-/* ------------------------------
+/* --------------------------------
    Terms & Refund Pages
------------------------------- */
+-------------------------------- */
 .policy-section {
   background: #ffffff;
   padding: 6rem 2rem;
@@ -269,10 +285,33 @@ body {
   margin-bottom: 1rem;
 }
 
-/* ------------------------------
+/* --------------------------------
    Scroll Animations
------------------------------- */
+-------------------------------- */
 [data-aos] {
   transition-duration: 0.8s !important;
   transition-timing-function: ease !important;
 }
+
+/* --------------------------------
+   Responsive Design
+-------------------------------- */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 2.3rem;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-btn {
+    padding: 0.7rem 1.8rem;
+    font-size: 1rem;
+  }
+  .card img {
+    height: 180px;
+  }
+}
+

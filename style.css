@@ -1,265 +1,323 @@
-/* =========================
-   General Styles
-========================= */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* ------------------------------
+   Global Styles
+------------------------------ */
+* {
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f9f9f9;
   color: #202124;
+  overflow-x: hidden;
 }
 
 a {
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
+a:hover {
+  text-decoration: none;
+  color: #1a73e8;
 }
 
-/* =========================
+img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* ------------------------------
    Navbar
-========================= */
+------------------------------ */
 .navbar {
-  padding: 1rem 0;
+  background: #fff;
+  transition: all 0.3s ease;
 }
 
 .navbar-brand {
   font-weight: 700;
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   color: #1a73e8 !important;
+  letter-spacing: 0.5px;
 }
 
-.navbar-nav .nav-link {
-  color: #202124 !important;
+.nav-link {
   font-weight: 500;
-  transition: color 0.3s ease;
+  color: #202124 !important;
 }
 
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
   color: #1a73e8 !important;
 }
 
-/* =========================
+/* ------------------------------
    Hero Section
-========================= */
+------------------------------ */
 .hero-section {
-  background-color: #f9f9f9;
-  padding: 5rem 1rem;
-  text-align: left;
-  max-width: 600px;
-  margin: 3rem auto;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgb(0 0 0 / 8%);
+  background: linear-gradient(135deg, #f9f9f9, #eef3ff);
+  padding: 6rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle at center, rgba(26,115,232,0.08) 0%, transparent 70%);
+  animation: glowPulse 6s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .hero-title {
+  font-size: 3rem;
   font-weight: 700;
-  font-size: 2.5rem;
   color: #202124;
-  margin-bottom: 1rem;
   line-height: 1.2;
+  animation: slideDown 1s ease-out;
 }
 
 .hero-title .highlight {
   color: #1a73e8;
-  text-shadow: 0 0 8px #7baaf7;
+  text-shadow: 0 0 10px rgba(26,115,232,0.4);
 }
 
 .hero-subtitle {
-  font-size: 1.125rem;
+  margin-top: 1rem;
+  font-size: 1.2rem;
   color: #5f6368;
-  margin-bottom: 2rem;
-  line-height: 1.4;
+  line-height: 1.5;
+  animation: fadeIn 2s ease;
 }
 
 .hero-btn {
+  margin-top: 2rem;
   display: inline-block;
   background: linear-gradient(90deg, #1a73e8, #3367d6);
-  color: white;
-  padding: 0.75rem 2.5rem;
-  font-size: 1.25rem;
+  color: #fff;
+  padding: 0.9rem 2.8rem;
   border-radius: 50px;
-  text-decoration: none;
-  box-shadow: 0 6px 12px rgb(49 99 230 / 0.5);
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.hero-btn i {
-  margin-left: 0.5rem;
-  font-weight: 700;
+  font-weight: 600;
+  box-shadow: 0 6px 14px rgba(26,115,232,0.5);
+  transition: all 0.3s ease;
+  animation: fadeUp 1.8s ease;
 }
 
 .hero-btn:hover {
   background: linear-gradient(90deg, #3367d6, #1a73e8);
-  text-decoration: none;
   transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(26,115,232,0.6);
 }
 
-/* =========================
+/* Animations */
+@keyframes slideDown {
+  0% { transform: translateY(-40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  0% { transform: translateY(40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ------------------------------
    Packages Section
-========================= */
+------------------------------ */
 .packages-section {
-  padding: 5rem 0;
+  padding: 5rem 2rem;
+  background: #fff;
 }
 
-.packages-section .card {
-  border: none;
-  border-radius: 15px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.section-title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  position: relative;
 }
 
-.packages-section .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 25px rgb(0 0 0 / 15%);
-}
-
-.packages-section .card-title {
-  font-weight: 600;
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.packages-section .card-text {
-  color: #5f6368;
-  font-size: 0.95rem;
-}
-
-.packages-section .btn-primary {
+.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
   background: linear-gradient(90deg, #1a73e8, #3367d6);
-  border: none;
+  margin: 0.8rem auto;
+  border-radius: 10px;
+}
+
+.package-card {
+  background: #fdfdfd;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.package-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(26,115,232,0.15);
+}
+
+.package-card img {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.package-card h4 {
+  font-size: 1.4rem;
+  color: #202124;
+  margin: 1rem 0;
+}
+
+.package-card p {
+  font-size: 0.95rem;
+  color: #5f6368;
+  padding: 0 1rem;
+}
+
+.package-price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1a73e8;
+  margin: 1rem 0;
+}
+
+.package-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #1a73e8, #3367d6);
+  color: #fff;
+  padding: 0.6rem 1.8rem;
   border-radius: 50px;
-  padding: 0.5rem 1.75rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.package-btn:hover {
+  background: linear-gradient(90deg, #3367d6, #1a73e8);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(26,115,232,0.5);
+}
+
+/* ------------------------------
+   About / Terms / Refund Pages
+------------------------------ */
+.about-section, .terms-section, .refund-section {
+  background: linear-gradient(180deg, #ffffff, #f2f6ff);
+  padding: 5rem 2rem;
+}
+
+.about-section img {
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(26,115,232,0.15);
+}
+
+.underline {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #1a73e8, #3367d6);
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* ------------------------------
+   FAQ / Why Choose Us / Feedback
+------------------------------ */
+.faq-section, .feedback-section, .choose-section {
+  padding: 5rem 2rem;
+  background-color: #fff;
+}
+
+.faq-item {
+  margin-bottom: 1.5rem;
+}
+
+.faq-question {
+  font-weight: 600;
+  cursor: pointer;
+  color: #1a73e8;
+}
+
+.faq-answer {
+  display: none;
+  padding-top: 0.5rem;
+  color: #5f6368;
+  animation: fadeIn 0.6s ease;
+}
+
+.feedback-card {
+  background: #f9f9f9;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(26,115,232,0.1);
   transition: all 0.3s ease;
 }
 
-.packages-section .btn-primary:hover {
-  background: linear-gradient(90deg, #3367d6, #1a73e8);
+.feedback-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(26,115,232,0.15);
 }
 
-/* =========================
-   Why Choose Section
-========================= */
-.whychoose-section {
-  padding: 5rem 0;
-}
-
-.feature-box {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.feature-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
-}
-
-.feature-box h5 {
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.feature-box p {
-  color: #5f6368;
-  font-size: 0.95rem;
-}
-
-/* =========================
-   FAQ Section
-========================= */
-.faq-section {
-  padding: 5rem 0;
-}
-
-.faq-section .accordion-button {
-  font-weight: 500;
-  color: #202124;
-}
-
-.faq-section .accordion-button:not(.collapsed) {
-  color: #1a73e8;
-  background-color: #f9f9f9;
-}
-
-.faq-section .accordion-body {
-  color: #5f6368;
-}
-
-/* =========================
-   Testimonial Section
-========================= */
-.testimonial-section {
-  padding: 5rem 0;
-}
-
-.testimonial-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
-}
-
-.testimonial-card h5 {
-  font-weight: 600;
-}
-
-.testimonial-card p {
-  color: #5f6368;
-}
-
-/* =========================
+/* ------------------------------
    Footer
-========================= */
+------------------------------ */
 .footer-section {
-  padding: 3rem 0;
-  font-size: 0.9rem;
+  background: linear-gradient(90deg, #0d1b2a, #1b263b);
+  color: #fff;
 }
 
-.footer-section h5 {
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.footer-section p,
 .footer-section a {
-  color: #cfd8dc;
+  color: #ddd;
+  text-decoration: none;
 }
 
 .footer-section a:hover {
   color: #1a73e8;
 }
 
-.footer-section .social-icons a {
-  display: inline-block;
-  margin-right: 0.5rem;
-  font-size: 1.25rem;
-  color: #cfd8dc;
-  transition: color 0.3s ease;
+.footer-section h5 {
+  margin-bottom: 1rem;
+  color: #fff;
+  font-weight: 600;
 }
 
-.footer-section .social-icons a:hover {
-  color: #1a73e8;
+/* ------------------------------
+   Scroll Animation
+------------------------------ */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
 }
 
-/* =========================
-   Responsive
-========================= */
-@media (max-width: 768px) {
-  .hero-section {
-    max-width: 90%;
-    padding: 3rem 1rem;
-  }
-
-  .hero-title {
-    font-size: 2rem;
-  }
-
-  .hero-btn {
-    font-size: 1.1rem;
-    padding: 0.6rem 2rem;
-  }
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

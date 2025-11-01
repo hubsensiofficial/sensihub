@@ -415,6 +415,15 @@
   </div>
 </footer>
 
+<!-- Contact -->
+<section class="contact-section text-center py-5 bg-light" data-aos="fade-up">
+  <div class="container">
+    <h2 class="fw-bold mb-4">Need Help? Contact Us</h2>
+    <p class="text-muted mb-4">You can reach us anytime through mail or telegram for queries.</p>
+    <a href="#" id="contactBtn" class="contact-btn"><i class="fas fa-paper-plane"></i> Send Message</a>
+  </div>
+</section>
+
 <!-- Contact Popup -->
 <div class="contact-popup" id="contactPopup">
   <div class="contact-box">
@@ -438,19 +447,15 @@
   AOS.init();
 
   const popup = document.getElementById('contactPopup');
-  const closePopup = document.getElementById('closePopup');
   const contactBtn = document.getElementById('contactBtn');
+  const closePopup = document.getElementById('closePopup');
   const emailBtn = document.getElementById('emailBtn');
   const telegramBtn = document.getElementById('telegramBtn');
 
-  // Show popup when site loads
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      popup.classList.add('active');
-    }, 1200);
-  });
+  // Auto popup after load
+  window.addEventListener('load', () => setTimeout(() => popup.classList.add('active'), 1200));
 
-  // Open popup on Send Message click
+  // Open popup manually
   contactBtn.addEventListener('click', (e) => {
     e.preventDefault();
     popup.classList.add('active');
@@ -459,22 +464,22 @@
   // Close popup
   closePopup.addEventListener('click', () => popup.classList.remove('active'));
 
-  // Email redirect
+  // Send via Email
   emailBtn.addEventListener('click', () => {
     const name = encodeURIComponent(document.getElementById('name').value);
     const msg = encodeURIComponent(document.getElementById('message').value);
-    window.open(`mailto:hubsensiofficial@gmail.com?subject=User%20Query%20from%20${name}&body=${msg}`, '_blank');
+    const phone = encodeURIComponent(document.getElementById('phone').value);
+    window.location.href = `mailto:hubsensiofficial@gmail.com?subject=User%20Query%20from%20${name}&body=Name:%20${name}%0APhone:%20${phone}%0AMessage:%20${msg}`;
   });
 
-  // Telegram redirect
+  // Send via Telegram
   telegramBtn.addEventListener('click', () => {
     const name = encodeURIComponent(document.getElementById('name').value);
     const msg = encodeURIComponent(document.getElementById('message').value);
     const phone = encodeURIComponent(document.getElementById('phone').value);
-    const link = `https://t.me/anoop_628?text=Hello%2C%20my%20name%20is%20${name}%20(%20${phone}%20).%0A${msg}`;
+    const link = `https://t.me/anoop_628?text=Hello,%20my%20name%20is%20${name}%20(%20${phone}%20).%0A${msg}`;
     window.open(link, '_blank');
   });
 </script>
 </body>
 </html>
-

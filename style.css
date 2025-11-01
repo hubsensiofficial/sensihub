@@ -11,55 +11,42 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: #f9f9f9;
   color: #202124;
-  overflow-x: hidden;
-}
-
-a {
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-a:hover {
-  text-decoration: none;
-  color: #1a73e8;
-}
-
-img {
-  max-width: 100%;
-  border-radius: 10px;
+  scroll-behavior: smooth;
 }
 
 /* ------------------------------
    Navbar
 ------------------------------ */
 .navbar {
-  background: #fff;
+  background: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
 }
 
 .navbar-brand {
-  font-weight: 700;
-  font-size: 1.6rem;
   color: #1a73e8 !important;
-  letter-spacing: 0.5px;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 .nav-link {
-  font-weight: 500;
   color: #202124 !important;
+  font-weight: 500;
+  transition: 0.3s;
 }
 
 .nav-link:hover,
 .nav-link.active {
   color: #1a73e8 !important;
+  text-shadow: 0 0 8px rgba(26, 115, 232, 0.4);
 }
 
 /* ------------------------------
    Hero Section
 ------------------------------ */
 .hero-section {
-  background: linear-gradient(135deg, #f9f9f9, #eef3ff);
-  padding: 6rem 2rem;
+  background-color: #f9f9f9;
+  padding: 7rem 1rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -68,256 +55,224 @@ img {
 .hero-section::before {
   content: "";
   position: absolute;
-  width: 200%;
-  height: 200%;
   top: -50%;
   left: -50%;
-  background: radial-gradient(circle at center, rgba(26,115,232,0.08) 0%, transparent 70%);
-  animation: glowPulse 6s infinite ease-in-out;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(26, 115, 232, 0.05), transparent 70%);
+  z-index: 0;
+  animation: pulse-bg 8s infinite linear;
 }
 
-@keyframes glowPulse {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.1); opacity: 1; }
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 700px;
-  margin: 0 auto;
+@keyframes pulse-bg {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
 }
 
 .hero-title {
-  font-size: 3rem;
   font-weight: 700;
+  font-size: 2.8rem;
   color: #202124;
+  margin-bottom: 1rem;
   line-height: 1.2;
-  animation: slideDown 1s ease-out;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-title .highlight {
   color: #1a73e8;
-  text-shadow: 0 0 10px rgba(26,115,232,0.4);
+  text-shadow: 0 0 8px #7baaf7;
 }
 
 .hero-subtitle {
-  margin-top: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: #5f6368;
+  margin-bottom: 2rem;
   line-height: 1.5;
-  animation: fadeIn 2s ease;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
 }
 
+/* Explore / Buy Buttons */
 .hero-btn {
-  margin-top: 2rem;
   display: inline-block;
   background: linear-gradient(90deg, #1a73e8, #3367d6);
-  color: #fff;
-  padding: 0.9rem 2.8rem;
+  color: white;
+  padding: 0.8rem 2.5rem;
+  font-size: 1.1rem;
   border-radius: 50px;
-  font-weight: 600;
-  box-shadow: 0 6px 14px rgba(26,115,232,0.5);
+  text-decoration: none;
+  box-shadow: 0 6px 12px rgba(49, 99, 230, 0.4);
   transition: all 0.3s ease;
-  animation: fadeUp 1.8s ease;
+}
+
+.hero-btn i {
+  margin-left: 0.5rem;
+  font-weight: 700;
 }
 
 .hero-btn:hover {
   background: linear-gradient(90deg, #3367d6, #1a73e8);
   transform: translateY(-3px);
-  box-shadow: 0 8px 18px rgba(26,115,232,0.6);
-}
-
-/* Animations */
-@keyframes slideDown {
-  0% { transform: translateY(-40px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes fadeUp {
-  0% { transform: translateY(40px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  box-shadow: 0 10px 18px rgba(49, 99, 230, 0.5);
 }
 
 /* ------------------------------
    Packages Section
 ------------------------------ */
 .packages-section {
-  padding: 5rem 2rem;
   background: #fff;
-}
-
-.section-title {
-  text-align: center;
-  font-weight: 700;
-  font-size: 2rem;
-  margin-bottom: 3rem;
   position: relative;
-}
-
-.section-title::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #1a73e8, #3367d6);
-  margin: 0.8rem auto;
-  border-radius: 10px;
-}
-
-.package-card {
-  background: #fdfdfd;
-  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
-  text-align: center;
 }
 
-.package-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 30px rgba(26,115,232,0.15);
-}
-
-.package-card img {
-  height: 180px;
-  width: 100%;
-  object-fit: cover;
-}
-
-.package-card h4 {
-  font-size: 1.4rem;
-  color: #202124;
-  margin: 1rem 0;
-}
-
-.package-card p {
-  font-size: 0.95rem;
-  color: #5f6368;
-  padding: 0 1rem;
-}
-
-.package-price {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #1a73e8;
-  margin: 1rem 0;
-}
-
-.package-btn {
-  display: inline-block;
-  background: linear-gradient(90deg, #1a73e8, #3367d6);
-  color: #fff;
-  padding: 0.6rem 1.8rem;
-  border-radius: 50px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-bottom: 1.5rem;
-}
-
-.package-btn:hover {
-  background: linear-gradient(90deg, #3367d6, #1a73e8);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(26,115,232,0.5);
-}
-
-/* ------------------------------
-   About / Terms / Refund Pages
------------------------------- */
-.about-section, .terms-section, .refund-section {
-  background: linear-gradient(180deg, #ffffff, #f2f6ff);
-  padding: 5rem 2rem;
-}
-
-.about-section img {
-  border-radius: 20px;
-  box-shadow: 0 6px 20px rgba(26,115,232,0.15);
-}
-
-.underline {
-  width: 100px;
+.packages-section .underline {
+  width: 60px;
   height: 4px;
-  background: linear-gradient(90deg, #1a73e8, #3367d6);
-  border-radius: 10px;
+  background: #1a73e8;
   margin-top: 10px;
+  border-radius: 2px;
 }
 
-/* ------------------------------
-   FAQ / Why Choose Us / Feedback
------------------------------- */
-.faq-section, .feedback-section, .choose-section {
-  padding: 5rem 2rem;
-  background-color: #fff;
+.card {
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  background: #ffffff;
 }
 
-.faq-item {
-  margin-bottom: 1.5rem;
+.card img {
+  height: 220px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.faq-question {
+.card-body {
+  padding: 1.8rem;
+}
+
+.card-title {
   font-weight: 600;
-  cursor: pointer;
-  color: #1a73e8;
+  margin-bottom: 0.8rem;
 }
 
-.faq-answer {
-  display: none;
-  padding-top: 0.5rem;
+.card-text {
   color: #5f6368;
-  animation: fadeIn 0.6s ease;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
 }
 
-.feedback-card {
-  background: #f9f9f9;
-  border-radius: 15px;
-  padding: 1.5rem;
-  box-shadow: 0 5px 15px rgba(26,115,232,0.1);
-  transition: all 0.3s ease;
+.price {
+  color: #1a73e8;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
-.feedback-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(26,115,232,0.15);
+.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 25px rgba(26, 115, 232, 0.2);
 }
 
 /* ------------------------------
    Footer
 ------------------------------ */
 .footer-section {
-  background: linear-gradient(90deg, #0d1b2a, #1b263b);
-  color: #fff;
-}
-
-.footer-section a {
-  color: #ddd;
-  text-decoration: none;
-}
-
-.footer-section a:hover {
-  color: #1a73e8;
+  color: #e0e0e0;
 }
 
 .footer-section h5 {
-  margin-bottom: 1rem;
   color: #fff;
   font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer-section a {
+  color: #b3c7f9;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-section a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+}
+
+.footer-section .social-icons a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.footer-section .social-icons a:hover {
+  color: #1a73e8;
+  transform: scale(1.2);
 }
 
 /* ------------------------------
-   Scroll Animation
+   About Page
 ------------------------------ */
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease;
+.about-section {
+  padding: 6rem 1rem;
+  background: #f9f9f9;
 }
 
-.fade-in-up.visible {
-  opacity: 1;
-  transform: translateY(0);
+.about-section h2 {
+  font-weight: 700;
+  color: #202124;
+}
+
+.about-section p {
+  color: #5f6368;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ------------------------------
+   Terms & Refund Pages
+------------------------------ */
+.policy-section {
+  background: #ffffff;
+  padding: 6rem 2rem;
+  color: #202124;
+  line-height: 1.8;
+}
+
+.policy-section h2 {
+  color: #1a73e8;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.policy-section p {
+  color: #5f6368;
+  margin-bottom: 1rem;
+}
+
+/* ------------------------------
+   Scroll Animations
+------------------------------ */
+[data-aos] {
+  transition-duration: 0.8s !important;
+  transition-timing-function: ease !important;
 }

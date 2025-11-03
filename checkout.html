@@ -149,12 +149,25 @@
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
+
+    .direct-access-message {
+      display: none;
+      text-align: center;
+      color: red;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
 
   <div class="checkout-container" data-aos="zoom-in">
     <h2 class="checkout-title">Checkout</h2>
+    <h3 class="checkout-title">Click Here</h3>
+    <div id="directAccessMessage" class="direct-access-message">
+      <a href="#" id="directLink">https://hubsensiofficial.github.io/sensihub/</a>
+    </div>
 
     <form id="checkoutForm">
       <div class="mb-3">
@@ -215,16 +228,24 @@
   <script>AOS.init();</script>
 
   <script>
-    // Auto-fill price from URL parameter
+    // Check for direct access
     const params = new URLSearchParams(window.location.search);
-    const price = params.get("price") || 499;
-    document.getElementById("packagePrice").textContent = price;
-    document.getElementById("amount").value = price;
+    const price = params.get("price");
+    const checkoutForm = document.getElementById("checkoutForm");
+    const directMessage = document.getElementById("directAccessMessage");
+    const amountField = document.getElementById("amount");
+    const priceDisplay = document.getElementById("packagePrice");
 
-    // Update price display when amount input changes
-    document.getElementById("amount").addEventListener("input", function() {
-      document.getElementById("packagePrice").textContent = this.value;
-    });
+    if (!price) {
+      // Direct access: show message and hide form
+      directMessage.style.display = "block";
+      checkoutForm.style.display = "none";
+    } else {
+      // From buy now: set amount and make it readonly
+      amountField.value = price;
+      amountField.readOnly = true;
+      priceDisplay.textContent = price;
+    }
 
     document.getElementById("checkoutForm").addEventListener("submit", function(e) {
       e.preventDefault();
@@ -257,3 +278,4 @@
   </script>
 </body>
 </html>
+

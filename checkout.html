@@ -181,6 +181,11 @@
         </div>
       </div>
 
+      <div class="mb-3">
+        <label for="amount">Amount (₹)</label>
+        <input type="number" class="form-control" id="amount" placeholder="Enter amount" min="499" required>
+      </div>
+
       <div class="price-box">
         Total Amount: ₹<span id="packagePrice">0</span>
       </div>
@@ -214,6 +219,12 @@
     const params = new URLSearchParams(window.location.search);
     const price = params.get("price") || 499;
     document.getElementById("packagePrice").textContent = price;
+    document.getElementById("amount").value = price;
+
+    // Update price display when amount input changes
+    document.getElementById("amount").addEventListener("input", function() {
+      document.getElementById("packagePrice").textContent = this.value;
+    });
 
     document.getElementById("checkoutForm").addEventListener("submit", function(e) {
       e.preventDefault();
@@ -222,6 +233,7 @@
       const email = document.getElementById("email").value;
       const phone = document.getElementById("phone").value;
       const countryCode = document.getElementById("countryCode").value;
+      const amount = document.getElementById("amount").value;
 
       const loader = document.getElementById("loader");
       loader.style.display = "block";
@@ -231,14 +243,14 @@
         name: name,
         email: email,
         phone: countryCode + phone,
-        amount: price,
+        amount: amount,
         method: "GoCreator"
       };
       console.log("Sending to webhook:", payload);
 
       // Redirect to GoCreator Payment Gateway
       setTimeout(() => {
-        const paymentURL = `https://www.gocreator.in/dp?product=ac7bf376-721e-4bdc-a67d-9df309b45954&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(countryCode + phone)}&amount=${encodeURIComponent(price)}`;
+        const paymentURL = `https://www.gocreator.in/dp?product=ac7bf376-721e-4bdc-a67d-9df309b45954&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(countryCode + phone)}&amount=${encodeURIComponent(amount)}`;
         window.location.href = paymentURL;
       }, 2000);
     });

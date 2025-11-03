@@ -107,12 +107,62 @@ const observer = new IntersectionObserver(
 
 document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-// -------------------- Checkout Form (Auto Price Fill Simulation) --------------------
+// -------------------- Checkout Form (Auto Price Fill and Payment Logic) --------------------
 if (window.location.pathname.includes("checkout.html")) {
+  // Auto-fill price from URL parameter
   const urlParams = new URLSearchParams(window.location.search);
+  const price = urlParams.get("price") || 499;
   const priceField = document.getElementById("packagePrice");
-  if (priceField && urlParams.has("price")) {
-    priceField.value = `₹${urlParams.get("price")}`;
+  if (priceField) {
+    priceField.textContent = price;
+  }
+  const amountField = document.getElementById("amount");
+  if (amountField) {
+    amountField.value = price;
+  }
+
+  // Update price display when amount input changes
+  if (amountField) {
+    amountField.addEventListener("input", function() {
+      if (priceField) {
+        priceField.textContent = this.value;
+      }
+    });
+  }
+
+  // Payment submission logic
+  const checkoutForm = document.getElementById("checkoutForm");
+  if (checkoutForm) {
+    checkoutForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const countryCode = document.getElementById("countryCode").value;
+      const amount = document.getElementById("amount").value;
+
+      const loader = document.getElementById("loader");
+      if (loader) {
+        loader.style.display = "block";
+      }
+
+      // Simulate webhook payload
+      const payload = {
+        name: name,
+        email: email,
+        phone: countryCode + phone,
+        amount: amount,
+        method: "GoCreator"
+      };
+      console.log("Sending to webhook:", payload);
+
+      // Redirect to GoCreator Payment Gateway
+      setTimeout(() => {
+        const paymentURL = `https://www.gocreator.in/dp?product=ac7bf376-721e-4bdc-a67d-9df309b45954&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(countryCode + phone)}&amount=${encodeURIComponent(amount)}`;
+        window.location.href = paymentURL;
+      }, 2000);
+    });
   }
 }
 
@@ -137,4 +187,3 @@ if (carousel) {
     ride: "carousel",
   });
 }
-

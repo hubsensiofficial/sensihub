@@ -158,6 +158,15 @@
       font-size: 1.2rem;
       margin-top: 2rem;
     }
+
+    .note-message {
+      text-align: center;
+      color: red;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-top: 1rem;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -165,7 +174,7 @@
   <div class="checkout-container" data-aos="zoom-in">
     <h2 class="checkout-title">Checkout</h2>
     <div id="directAccessMessage" class="direct-access-message">
-    <link href=">https://hubsensiofficial.github.io/sensihub/"
+      <a href="https://hubsensiofficial.github.io/sensihub/">https://hubsensiofficial.github.io/sensihub/</a>
     </div>
 
     <form id="checkoutForm">
@@ -214,6 +223,10 @@
         </label>
       </div>
 
+      <div id="noteMessage" class="note-message">
+        Note- You have come without package, so you are getting the Bramhastra Package.
+      </div>
+
       <button type="submit" class="proceed-btn">Proceed to Payment</button>
       <div class="loader" id="loader">
         <i class="fa-solid fa-spinner"></i>
@@ -232,18 +245,24 @@
     const price = params.get("price");
     const checkoutForm = document.getElementById("checkoutForm");
     const directMessage = document.getElementById("directAccessMessage");
+    const noteMessage = document.getElementById("noteMessage");
     const amountField = document.getElementById("amount");
     const priceDisplay = document.getElementById("packagePrice");
 
     if (!price) {
-      // Direct access: show message and hide form
-      directMessage.style.display = "block";
-      checkoutForm.style.display = "none";
+      // Direct access: set amount to 999, readonly, show note, hide direct message
+      amountField.value = 999;
+      amountField.readOnly = true;
+      priceDisplay.textContent = 999;
+      noteMessage.style.display = "block";
+      directMessage.style.display = "none";
     } else {
-      // From buy now: set amount and make it readonly
+      // From buy now: set amount to price, readonly, hide note and direct message
       amountField.value = price;
       amountField.readOnly = true;
       priceDisplay.textContent = price;
+      noteMessage.style.display = "none";
+      directMessage.style.display = "none";
     }
 
     document.getElementById("checkoutForm").addEventListener("submit", function(e) {
@@ -277,4 +296,3 @@
   </script>
 </body>
 </html>
-

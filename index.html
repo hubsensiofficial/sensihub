@@ -302,13 +302,6 @@
       transition: background 0.3s ease, box-shadow 0.3s ease;
       user-select: none;
     }
-    .btn-email {
-      background: var(--primary-blue);
-    }
-    .btn-email:hover {
-      background: #155abd;
-      box-shadow: 0 6px 18px rgba(21,90,189,0.9);
-    }
     .btn-telegram {
       background: #0088cc;
       box-shadow: 0 4px 12px rgba(0,136,204,0.6);
@@ -661,7 +654,6 @@
     <input type="tel" id="phone" placeholder="Your Phone (+91...)" required aria-label="Your Phone" />
     <textarea id="message" rows="3" placeholder="Your Message" required aria-label="Your Message"></textarea>
     <div class="contact-buttons mt-3">
-      <button class="btn-email" id="emailBtn" type="button">Send via Email</button>
       <button class="btn-telegram" id="telegramBtn" type="button">Send via Telegram</button>
     </div>
     <button class="btn-close-popup" id="closePopup" type="button" aria-label="Close contact form">Close</button>
@@ -677,11 +669,7 @@
   const popup = document.getElementById('contactPopup');
   const contactBtn = document.getElementById('contactBtn');
   const closePopup = document.getElementById('closePopup');
-  const emailBtn = document.getElementById('emailBtn');
   const telegramBtn = document.getElementById('telegramBtn');
-
-  // Auto popup after page load, optional - remove if undesired auto popup
-  window.addEventListener('load', () => setTimeout(() => popup.classList.add('active'), 1200));
 
   // Open popup on Send Message button click
   contactBtn.addEventListener('click', (e) => {
@@ -705,11 +693,6 @@
       return;
     }
 
-    const mailtoLink = `mailto:hubsensiofficial@gmail.com?subject=User%20Query%20from%20${name}&body=Name:%20${name}%0AEmail:%20${email}%0APhone:%20${phone}%0AMessage:%20${msg}`;
-    window.location.href = mailtoLink;
-    popup.classList.remove('active');
-  });
-
   // Send via Telegram button handler
   telegramBtn.addEventListener('click', () => {
     const name = encodeURIComponent(document.getElementById('name').value.trim());
@@ -728,6 +711,7 @@
 </script>
 </body>
 </html>
+
 
 
 
